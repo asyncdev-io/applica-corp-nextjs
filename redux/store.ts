@@ -3,10 +3,9 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { searchApiSlice } from "./api/searchApi";
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
     [searchApiSlice.reducerPath]: searchApiSlice.reducer,
-    // Add other reducers here
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([searchApiSlice.middleware]),
@@ -14,4 +13,5 @@ const store = configureStore({
 
 setupListeners(store.dispatch);
 
-export default store;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

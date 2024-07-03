@@ -1,13 +1,14 @@
 "use client";
-import store from "@/redux/store";
-import { Provider } from "react-redux";
+
+import SearchForm from "@/layout/SearchForm";
 
 export default function Home() {
   return (
-    <Provider store={store}>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <h1 className="text-4xl font-bold">Welcome to the Movie App</h1>
-      </main>
-    </Provider>
+    <main className="flex min-h-screen flex-col items-center p-10 md:p-24 gap-10">
+      <h1 className="text-4xl font-bold text-center">
+        Welcome to the Movie App
+      </h1>
+      <SearchForm />
+    </main>
   );
 }

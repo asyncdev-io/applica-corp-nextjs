@@ -1,24 +1,27 @@
-import { Input } from "@/components/ui/input";
 import { useLazyGetMoviesFromSearchQuery } from "@/redux/api/searchApi";
 import { useState } from "react";
 import loader from "@/public/loader.gif";
 import Image from "next/image";
-import MovieCard from "@/components/ui/card";
 import { IMovie } from "@/redux/api/search.types";
-import { Button } from "@/components/ui/button";
 import { sortByDate } from "@/lib/utils";
+import { Input } from "@/components/ui/Input/input";
+import { Button } from "@/components/ui/Button/button";
+import MovieCard from "@/components/ui/Card/card";
 
 const SearchForm = () => {
   const [query, setQuery] = useState("");
   const [trigger, { data, error, isLoading }] =
     useLazyGetMoviesFromSearchQuery();
 
-  const handleOnSubmit = (event: React.FormEvent<HTMLButtonElement>) => {
+  const handleOnSubmit = async (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    trigger({ query });
+    try {
+      const res = await trigger({ query }).unwrap();
+      console.log("Response from the query:", res);
+    } catch (error) {
+      console.error("Error occurred while triggering the query:", error);
+    }
   };
-
-  console.log({ error });
 
   return (
     <>

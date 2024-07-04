@@ -5,7 +5,7 @@ import loader from "@/public/loader.gif";
 import Image from "next/image";
 import MovieCard from "@/components/ui/card";
 import { IMovie } from "@/redux/api/search.types";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button/button";
 import { sortByDate } from "@/lib/utils";
 
 const SearchForm = () => {
